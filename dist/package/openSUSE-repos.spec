@@ -175,6 +175,7 @@ echo "zsystems" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 %endif
 
 %post
-zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
+# We hereby declare that running this will not influence existing transaction
+ZYPP_READONLY_HACK=1 zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
 
 %changelog
