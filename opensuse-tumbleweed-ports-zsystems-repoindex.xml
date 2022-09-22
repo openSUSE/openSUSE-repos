@@ -1,0 +1,27 @@
+<repoindex ttl="0"
+    disturl="https://download.opensuse.org"
+    distsub="tumbleweed/"
+    distarch="zsystems"
+    debugenable="false"
+    sourceenable="false">
+
+<repo url="%{disturl}/ports/%{distarch}/%{distsub}/repo/oss"
+    alias="repo-oss"
+    name="%{alias} (%{distver})"
+    enabled="true"
+    autorefresh="true"/>
+
+<repo url="%{disturl}/ports/%{distarch}/debug/%{distsub}/repo/oss"
+    alias="repo-oss-debug"
+    name="%{alias} (%{distver})"
+    enabled="true"
+    autorefresh="true"/>
+
+<repo url="%{disturl}/ports/%{distarch}/source/%{distsub}/repo/oss"
+    alias="repo-oss-source"
+    name="%{alias} (%{distver})"
+    enabled="true"
+    autorefresh="true"/>
+
+
+</repoindex>
