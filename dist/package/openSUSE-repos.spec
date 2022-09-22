@@ -175,6 +175,6 @@ echo "zsystems" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 %endif
 
 %post
-zypper addservice %{_datadir}/zypp/local/service/openSUSE  openSUSE
+zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
 
 %changelog
