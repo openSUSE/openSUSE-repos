@@ -39,7 +39,7 @@ Source3:        opensuse-leap-repoindex.xml
 Source4:        opensuse-leap-ports-repoindex.xml
 
 %description
-A local service providing openSUSE repository definitions for zypp
+Definitions for repo management of openSUSE repositories via a zypp-services
 
 # -------------------------------------------------------------------------------
 
@@ -70,8 +70,25 @@ openSUSE %{distname} local service providing openSUSE repository definitions for
 %dir %{_datadir}/zypp/local/service
 %dir %{_datadir}/zypp/local/service/openSUSE
 %dir %{_datadir}/zypp/local/service/openSUSE/repo
-%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%ghost  %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %{_sysconfdir}/zypp/vars.d/DIST_ARCH
+
+%if "%{distname}" == "Tumbleweed"
+%ifarch %{ix86} x86_64
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-tumbleweed-repoindex.xml
+%else
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-tumbleweed-ports-repoindex.xml
+%endif
+%endif
+
+# Leap 15.3+ treats all arches as primary with exception of armv7 which is in /ports
+%if "%{distname}" == "Leap"
+%ifarch ix86 x86_64 aarch64 power64 s390x
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-leap-repoindex.xml
+%else
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-leap-ports-repoindex.xml
+%endif
+%endif
 
 # -------------------------------------------------------------------------------
 
@@ -93,8 +110,14 @@ openSUSE %{distname} package repository files for DNF and PackageKit.
 %dir %{_datadir}/zypp/local/
 %dir %{_datadir}/zypp/local/service
 %dir %{_datadir}/zypp/local/service/openSUSE
-%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%ghost %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %{_sysconfdir}/zypp/vars.d/DIST_ARCH
+
+%ifarch %{ix86} x86_64
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-tumbleweed-repoindex.xml
+%else
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-tumbleweed-ports-repoindex.xml
+%endif
 
 %endif
 
@@ -115,12 +138,12 @@ mkdir -p %{buildroot}%{_sysconfdir}/zypp/vars.d/
 
 # Setup for primary arches
 %ifarch %{ix86} x86_64
-install %{SOURCE1} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+install %{SOURCE1} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %endif
 
 # Setup for ports
 %ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
-install %{SOURCE2} -pm 0644%{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+install %{SOURCE2} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %endif
 
 %if "%{distname}" == "Leap"
@@ -129,25 +152,21 @@ install %{SOURCE2} -pm 0644%{buildroot}%{_datadir}/zypp/local/service/openSUSE/r
 
 # Setup for main SLE/Leap arches
 %ifarch ix86 x86_64 aarch64 power64 s390x
-install %{SOURCE3} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+install %{SOURCE3} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %else
-install %{SOURCE4} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+install %{SOURCE4} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %endif
 %endif
 
 # Ports for both Leap and TW
 # Used in baseurl needs to match with /ports/$directory on pontifex
 
-%ifarch %{ix86} x86_64
+%ifarch %{ix86}
 echo "x86" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 %endif
 
 %ifarch x86_64
 echo "x86_64" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
-%endif
-
-%ifarch aarch64
-echo "aarch64" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 %endif
 
 %ifarch aarch64
@@ -175,6 +194,24 @@ echo "zsystems" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 %endif
 
 %post
+
+%if "%{distname}" == "Leap"
+%ifarch ix86 x86_64 aarch64 power64 s390x
+ln -sf opensuse-leap-repoindex.xml %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%else
+ln -sf opensuse-leap-ports-repoindex.xml %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
+%endif
+
+%if "%{distname}" == "Tumbleweed"
+%ifarch %{ix86} x86_64
+ln -sf opensuse-tumbleweed-repoindex.xml %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
+%ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
+ln -sf opensuse-tumbleweed-ports-repoindex.xml %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
+%endif
+
 # We hereby declare that running this will not influence existing transaction
 ZYPP_READONLY_HACK=1 zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
 
