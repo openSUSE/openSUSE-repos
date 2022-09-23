@@ -50,3 +50,35 @@ $ sudo rm -f  /etc/zypp/repos.d/repo-backports-debug-update.repo \
 /etc/zypp/repos.d/repo-sle-debug-update.repo \
 /etc/zypp/repos.d/repo-sle-update.repo
 ```
+
+## How to contribute?
+
+Package is developed in [GitHub/openSUSE](https://github.com/openSUSE/openSUSE-repos/).
+
+Package needs to be manually updated in [OBS](https://build.opensuse.org/package/show/Base:System/openSUSE-repos) once changes are merged in GitHub.
+
+Make sure to install osc and required obs services by openSUSE-repos package
+
+```
+$ sudo zypper in openSUSE-release-tools obs-service-tar
+```
+
+Fork the repository in OBS, fetch latest request and make a submit request.
+
+```
+$ osc bco Base:System/openSUSE-repos
+cd home:i*:branches:Base:System/openSUSE-repos
+osc service runall
+osc vc # make changelog entry
+osc commit
+osc sr # submit request back to Base:System
+```
+
+Don't forget to send changes back to Tumbleweed and Leap once changes are merged to Base:System.
+
+```
+$ osc sr Base:System openSUSE-repos openSUSE:Factory
+$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:15.5 # once merged to Factory
+```
+
+That's all. Happy Hacking
