@@ -22,5 +22,10 @@
     enabled="true"
     autorefresh="true"/>
 
+<repo url="%{disturl}/ports/%{DIST_ARCH}/update/%{distsub}"
+    alias="Factory_Update"
+    name="%{alias}"
+    enabled="true"
+    autorefresh="true"/>
 
 </repoindex>
