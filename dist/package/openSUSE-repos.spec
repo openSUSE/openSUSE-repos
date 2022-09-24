@@ -34,6 +34,8 @@ License:        MIT
 Group:          System/Management
 URL:            https://github.com/openSUSE/openSUSE-repos
 Source:         %{name}-%{version}.tar.xz
+#boo#1203715
+BuildRequires:  -post-build-checks
 
 %description
 Definitions for openSUSE repository management via zypp-services
@@ -135,7 +137,6 @@ if [ "$1" = 0 ] ; then
     rm -f %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
   fi
 fi
-
 %endif
 
 %prep
