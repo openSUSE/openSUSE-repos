@@ -124,6 +124,9 @@ ln -sf opensuse-tumbleweed-repoindex.xml %{_datadir}/zypp/local/service/openSUSE
 ln -sf opensuse-tumbleweed-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
 
+# We hereby declare that running this will not influence existing transaction
+ZYPP_READONLY_HACK=1 zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
+
 %postun Tumbleweed
 if [ "$1" = 0 ] ; then
   # We hereby declare that running this will not influence existing transaction
