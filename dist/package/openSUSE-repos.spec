@@ -213,8 +213,11 @@ ln -sf opensuse-tumbleweed-ports-repoindex.xml %{buildroot}%{_datadir}/zypp/loca
 ZYPP_READONLY_HACK=1 zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
 
 %postun
-if [ $1 -eq 0 ] ; then
-ZYPP_READONLY_HACK=1 zypper removeservice openSUSE
+if [ "$1" = 0 ] ; then
+  ZYPP_READONLY_HACK=1 zypper removeservice openSUSE
+  if [ -L "%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml" ] ; then
+    rm -f %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+  fi
 fi
 
 
