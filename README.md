@@ -1,6 +1,6 @@
 # openSUSE-repos
 
-**Definitions for repo management of openSUSE repositories via zypp-services.**
+**Definitions for openSUSE repository management via zypp-services.**
 
 This feature was originally requested as part of https://code.opensuse.org/leap/features/issue/91
 

@@ -36,7 +36,7 @@ URL:            https://github.com/openSUSE/openSUSE-repos
 Source:         %{name}-%{version}.tar.xz
 
 %description
-Definitions for repo management of openSUSE repositories via a zypp-services
+Definitions for openSUSE repository management via zypp-services
 
 # -------------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ Obsoletes:      %{name}-Leap
 %endif
 
 %description %{distname}
-openSUSE %{distname} local service providing openSUSE repository definitions for zypp
+Definitions for openSUSE %{distanem} repository management via zypp-services
 
 %files %{distname}
 
