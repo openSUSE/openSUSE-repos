@@ -91,6 +91,7 @@ Definitions for openSUSE %{distanem} repository management via zypp-services
 
 # -------------------------------------------------------------------------------
 
+# Build both Leap and TW subpackages just for Leap
 %if "%{distname}" == "Leap"
 %package Tumbleweed
 Version:        0
@@ -149,11 +150,10 @@ fi
 
 %install
 
-# ==== Primary Tumbleweed repository configuration ====
-
 mkdir -p %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 mkdir -p %{buildroot}%{_sysconfdir}/zypp/vars.d/
 
+%if "%{distname}" == "Tumbleweed"
 # Setup for primary arches
 %ifarch %{ix86} x86_64
 install opensuse-tumbleweed-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
@@ -163,11 +163,9 @@ install opensuse-tumbleweed-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/
 %ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
 install opensuse-tumbleweed-ports-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %endif
+%endif
 
 %if "%{distname}" == "Leap"
-
-# ==== Primary Leap repository configuration ====
-
 # Setup for main SLE/Leap arches
 %ifarch ix86 x86_64 aarch64 power64 s390x
 install opensuse-leap-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
@@ -219,12 +217,15 @@ ln -sf opensuse-leap-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/
 %else
 ln -sf opensuse-leap-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
-%else
+%endif
+
+%if "%{distname}" == "Tumbleweed"
 %ifarch %{ix86} x86_64
 ln -sf opensuse-tumbleweed-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
 %ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
 ln -sf opensuse-tumbleweed-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
 %endif
 
 # We hereby declare that running this will not influence existing transaction
