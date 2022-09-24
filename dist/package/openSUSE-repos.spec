@@ -239,7 +239,6 @@ if [ "$1" = 0 ] ; then
     rm -f %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
   fi
 fi
-%endif
 
 
 
