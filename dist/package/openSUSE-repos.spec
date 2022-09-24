@@ -27,16 +27,13 @@
 %global distname Leap
 %endif
 Name:           openSUSE-repos
-Version:        %{mainversion}
+Version:        0
 Release:        0
 Summary:        openSUSE package repositories
 License:        MIT
 Group:          System/Management
-URL:            https://opensuse.org/
-Source1:        opensuse-tumbleweed-repoindex.xml
-Source2:        opensuse-tumbleweed-ports-repoindex.xml
-Source3:        opensuse-leap-repoindex.xml
-Source4:        opensuse-leap-ports-repoindex.xml
+URL:            https://github.com/openSUSE/openSUSE-repos
+Source:         %{name}-%{version}.tar.xz
 
 %description
 Definitions for repo management of openSUSE repositories via a zypp-services
@@ -44,12 +41,12 @@ Definitions for repo management of openSUSE repositories via a zypp-services
 # -------------------------------------------------------------------------------
 
 %package %{distname}
-Version:        0%{?suse_version}
+Version:        20220923.24da030%{?suse_version}
 Summary:        openSUSE %{distname} package repositories
+BuildRequires:  zypper
 # We're compatible with any SUSE Linux distribution
 Requires:       suse-release
 Requires:       zypper
-BuildRequires:  zypper
 # Prefer the version that matches our distribution
 Suggests:       %{name}-%{distname}
 Conflicts:      %{name}
@@ -70,7 +67,7 @@ openSUSE %{distname} local service providing openSUSE repository definitions for
 %dir %{_datadir}/zypp/local/service
 %dir %{_datadir}/zypp/local/service/openSUSE
 %dir %{_datadir}/zypp/local/service/openSUSE/repo
-%ghost  %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%ghost %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %{_sysconfdir}/zypp/vars.d/DIST_ARCH
 
 %if "%{distname}" == "Tumbleweed"
@@ -94,7 +91,7 @@ openSUSE %{distname} local service providing openSUSE repository definitions for
 
 %if "%{distname}" == "Leap"
 %package Tumbleweed
-Version:        0%{?suse_version}
+Version:        20220923.24da030%{?suse_version}
 Summary:        openSUSE Tumbleweed package repositories
 # We're compatible with any SUSE Linux distribution
 Requires:       suse-release
@@ -122,7 +119,7 @@ openSUSE %{distname} package repository files for DNF and PackageKit.
 %endif
 
 %prep
-# Nothing to prepare
+%setup -q
 
 
 %build
@@ -138,12 +135,12 @@ mkdir -p %{buildroot}%{_sysconfdir}/zypp/vars.d/
 
 # Setup for primary arches
 %ifarch %{ix86} x86_64
-install %{SOURCE1} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+install opensuse-tumbleweed-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %endif
 
 # Setup for ports
 %ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
-install %{SOURCE2} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+install opensuse-tumbleweed-ports-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %endif
 
 %if "%{distname}" == "Leap"
@@ -152,9 +149,9 @@ install %{SOURCE2} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/
 
 # Setup for main SLE/Leap arches
 %ifarch ix86 x86_64 aarch64 power64 s390x
-install %{SOURCE3} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+install opensuse-leap-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %else
-install %{SOURCE4} -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+install opensuse-leap-ports-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %endif
 %endif
 
