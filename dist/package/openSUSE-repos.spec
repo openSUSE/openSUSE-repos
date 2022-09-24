@@ -41,7 +41,7 @@ Definitions for openSUSE repository management via zypp-services
 # -------------------------------------------------------------------------------
 
 %package %{distname}
-Version:        20220923.24da030%{?suse_version}
+Version:        0
 Summary:        openSUSE %{distname} package repositories
 BuildRequires:  zypper
 # We're compatible with any SUSE Linux distribution
@@ -91,7 +91,7 @@ Definitions for openSUSE %{distanem} repository management via zypp-services
 
 %if "%{distname}" == "Leap"
 %package Tumbleweed
-Version:        20220923.24da030%{?suse_version}
+Version:        0
 Summary:        openSUSE Tumbleweed package repositories
 # We're compatible with any SUSE Linux distribution
 Requires:       suse-release
@@ -115,6 +115,22 @@ openSUSE %{distname} package repository files for DNF and PackageKit.
 %else
 %{_datadir}/zypp/local/service/openSUSE/repo/opensuse-tumbleweed-ports-repoindex.xml
 %endif
+
+%post Tumbleweed
+%ifarch %{ix86} x86_64
+ln -sf opensuse-tumbleweed-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
+%ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
+ln -sf opensuse-tumbleweed-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+
+%postun Tumbleweed
+if [ "$1" = 0 ] ; then
+  # We hereby declare that running this will not influence existing transaction
+  ZYPP_READONLY_HACK=1 zypper removeservice openSUSE
+  if [ -L "%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml" ] ; then
+    rm -f %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+  fi
+fi
 
 %endif
 
@@ -190,35 +206,37 @@ echo "riscv" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 echo "zsystems" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 %endif
 
-%post
 
+%post %{distname}
 %if "%{distname}" == "Leap"
 %ifarch ix86 x86_64 aarch64 power64 s390x
 ln -sf opensuse-leap-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %else
 ln -sf opensuse-leap-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
-%endif
-
-%if "%{distname}" == "Tumbleweed"
+%else
 %ifarch %{ix86} x86_64
 ln -sf opensuse-tumbleweed-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
 %ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
 ln -sf opensuse-tumbleweed-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
-%endif
 
-# We hereby declare that running this will not influence existing transaction
-ZYPP_READONLY_HACK=1 zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
-
-%postun
+%postun %{distname}
 if [ "$1" = 0 ] ; then
+  # We hereby declare that running this will not influence existing transaction
   ZYPP_READONLY_HACK=1 zypper removeservice openSUSE
   if [ -L "%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml" ] ; then
     rm -f %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
   fi
 fi
+%endif
+
+
+
+# We hereby declare that running this will not influence existing transaction
+ZYPP_READONLY_HACK=1 zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
+
 
 
 %changelog
