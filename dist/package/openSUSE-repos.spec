@@ -194,18 +194,18 @@ echo "zsystems" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 
 %if "%{distname}" == "Leap"
 %ifarch ix86 x86_64 aarch64 power64 s390x
-ln -sf opensuse-leap-repoindex.xml %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+ln -sf opensuse-leap-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %else
-ln -sf opensuse-leap-ports-repoindex.xml %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+ln -sf opensuse-leap-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
 %endif
 
 %if "%{distname}" == "Tumbleweed"
 %ifarch %{ix86} x86_64
-ln -sf opensuse-tumbleweed-repoindex.xml %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+ln -sf opensuse-tumbleweed-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
 %ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
-ln -sf opensuse-tumbleweed-ports-repoindex.xml %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+ln -sf opensuse-tumbleweed-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
 %endif
 
