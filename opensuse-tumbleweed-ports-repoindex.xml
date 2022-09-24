@@ -23,7 +23,7 @@
     autorefresh="true"/>
 
 <repo url="%{disturl}/ports/%{DIST_ARCH}/update/%{distsub}"
-    alias="Factory_Update"
+    alias="update-tumbleweed"
     name="%{alias}"
     enabled="true"
     autorefresh="true"/>

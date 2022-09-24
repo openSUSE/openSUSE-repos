@@ -28,8 +28,8 @@
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distub}"
-    alias="Factory_Update"
+<repo url="%{disturl}/update/%{distsub}"
+    alias="update-tumbleweed"
     name="%{alias}"
     enabled="true"
     autorefresh="true"/>
