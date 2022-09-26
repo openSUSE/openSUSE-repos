@@ -11,8 +11,8 @@
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/%{distsub}%{distver}/product/repo/Leap-Micro-%{distver}-%{DIST_ARCH}-Media1"
-    alias="repo-main"
+<repo url="%{disturl}/distribution/%{distsub}%{distver}/product/repo/Leap-Micro-%{distver}-%{DIST_ARCH}-Media2"
+    alias="repo-debug"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
