@@ -46,7 +46,7 @@ Definitions for openSUSE repository management via zypp-services
 %ghost %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %{_sysconfdir}/zypp/vars.d/DIST_ARCH
 
-%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-leap-miro-repoindex.xml
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-leap-micro-repoindex.xml
 
 %prep
 %setup -n openSUSE-repos-%{version}
