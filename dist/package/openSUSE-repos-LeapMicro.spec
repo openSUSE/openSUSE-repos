@@ -1,5 +1,5 @@
 #
-# spec file for package openSUSE-repos
+# spec file for package openSUSE-repos-LeapMicro
 #
 # Copyright (c) 2022 SUSE LLC
 # Copyright (c) 2022 Neal Gompa <ngompa13@gmail.com>
@@ -25,17 +25,17 @@ Summary:        openSUSE package repositories
 License:        MIT
 Group:          System/Management
 URL:            https://github.com/openSUSE/openSUSE-repos
-Source:        	openSUSE-repos-%{version}.tar.xz
+Source:         openSUSE-repos-%{version}.tar.xz
 #boo#1203715
 BuildRequires:  -post-build-checks
 # We're compatible with any SUSE Linux distribution
 Requires:       suse-release
 Requires:       zypper
-Provides:	openSUSE-repos
 Conflicts:      otherproviders(openSUSE-repos)
+Provides:       openSUSE-repos
+
 %description
 Definitions for openSUSE repository management via zypp-services
-
 
 %files
 
@@ -49,7 +49,7 @@ Definitions for openSUSE repository management via zypp-services
 %{_datadir}/zypp/local/service/openSUSE/repo/opensuse-leap-micro-repoindex.xml
 
 %prep
-%setup -n openSUSE-repos-%{version}
+%setup -q -n openSUSE-repos-%{version}
 
 
 %build
@@ -111,7 +111,5 @@ if [ "$1" = 0 ] ; then
     rm -f %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
   fi
 fi
-
-
 
 %changelog
