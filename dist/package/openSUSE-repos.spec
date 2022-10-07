@@ -53,7 +53,11 @@ ExclusiveArch:  do_not_build
 ExclusiveArch:  do_not_build
 %endif
 
+%if "@BUILD_FLAVOR@" == ""
+Name:           openSUSE-repos
+%else
 Name:           openSUSE-repos-%{theme}
+%endif
 Version:        20220926.da3133a
 Release:        0
 Summary:        openSUSE package repositories
