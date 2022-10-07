@@ -1,5 +1,5 @@
 #
-# spec file for package openSUSE-repos-Leap
+# spec file
 #
 # Copyright (c) 2022 SUSE LLC
 # Copyright (c) 2022 Neal Gompa <ngompa13@gmail.com>
@@ -18,8 +18,43 @@
 
 
 %global debug_package %{nil}
-Name:           openSUSE-repos-Leap
-Version:        0
+
+%if "@BUILD_FLAVOR@" == ""
+ExclusiveArch:  do_not_build
+%endif
+
+%global flavor @BUILD_FLAVOR@%nil
+
+%if 0%{?is_opensuse}
+# Tumbleweed
+%if "%flavor" == "openSUSE-repos-Tumbleweed"
+%if %suse_version >= 1550
+%define theme Tumbleweed
+%define branding tumbleweed
+%endif
+%endif
+%if 0%{?sle_version}
+# Leap
+%if 0%{?is_leapmicro}
+%if "%flavor" == "openSUSE-repos-LeapMicro"
+%define theme LeapMicro
+%define branding leap-micro
+%endif
+%else
+%if "%flavor" == "openSUSE-repos-Leap"
+%define theme Leap
+%define branding leap
+%endif
+%endif
+%endif
+%endif
+
+%if "%{?theme}" == ""
+ExclusiveArch:  do_not_build
+%endif
+
+Name:           openSUSE-repos-%{theme}
+Version:        20220926.da3133a
 Release:        0
 Summary:        openSUSE package repositories
 License:        MIT
@@ -33,6 +68,11 @@ Requires:       suse-release
 Requires:       zypper
 Conflicts:      otherproviders(openSUSE-repos)
 Provides:       openSUSE-repos
+%if "%{?theme}" == "Tumbleweed"
+# Unconditionally ensure Leap upgrades to Tumbleweed
+Obsoletes:      openSUSE-repos-Leap
+Obsoletes:      openSUSE-repos-LeapMicro
+%endif
 
 %description
 Definitions for openSUSE repository management via zypp-services
@@ -46,19 +86,33 @@ Definitions for openSUSE repository management via zypp-services
 %ghost %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %{_sysconfdir}/zypp/vars.d/DIST_ARCH
 
-%ifarch ix86 x86_64 aarch64 power64 s390x
-%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-leap-repoindex.xml
+%if "%{theme}" == "Tumbleweed"
+%ifarch %{ix86} x86_64
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
 %else
-%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-leap-ports-repoindex.xml
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-ports-repoindex.xml
+%endif
+%endif
+
+%if "%{theme}" == "LeapMicro"
+%ifarch x86_64 aarch64
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
+%endif
+%endif
+
+%if "%{theme}" == "Leap"
+%ifarch %{ix86} x86_64 aarch64 ppc64le s390x
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
+%else
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-ports-repoindex.xml
+%endif
 %endif
 
 %prep
 %setup -q -n openSUSE-repos-%{version}
 
-
 %build
 # Nothing to build
-
 
 %install
 
@@ -66,12 +120,26 @@ mkdir -p %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 mkdir -p %{buildroot}%{_sysconfdir}/zypp/vars.d/
 
 # Setup for primary arches
-%ifarch ix86 x86_64 aarch64 power64 s390x
-install opensuse-leap-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+%if "%{theme}" == "Tumbleweed"
+%ifarch %{ix86} x86_64
+install opensuse-%{branding}-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+%else ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
+install opensuse-%{branding}-ports-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+%endif
+%endif
 
-# Setup for ports
+%if "%{theme}" == "LeapMicro"
+%ifarch x86_64 aarch64
+install opensuse-%{branding}-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+%endif
+%endif
+
+%if "%{theme}" == "Leap"
+%ifarch %{ix86} x86_64 aarch64 ppc64le s390x
+install opensuse-%{branding}-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %else
-install opensuse-leap-ports-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+install opensuse-%{branding}-ports-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+%endif
 %endif
 
 %ifarch %{ix86}
@@ -106,12 +174,27 @@ echo "riscv" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 echo "zsystems" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 %endif
 
-
 %post
-%ifarch ix86 x86_64 aarch64 power64 s390x
-ln -sf opensuse-leap-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%if "%{theme}" == "Tumbleweed"
+%ifarch %{ix86} x86_64
+ln -sf opensuse-%{branding}-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %else
-ln -sf opensuse-leap-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+ln -sf opensuse-%{branding}-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
+%endif
+
+%if "%{theme}" == "LeapMicro"
+%ifarch x86_64 aarch64
+ln -sf opensuse-%{branding}-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
+%endif
+
+%if "%{theme}" == "Leap"
+%ifarch %{ix86} x86_64 aarch64 ppc64le s390x
+ln -sf opensuse-%{branding}-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%else
+ln -sf opensuse-%{branding}-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
 %endif
 
 # We hereby declare that running this will not influence existing transaction
