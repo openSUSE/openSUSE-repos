@@ -32,11 +32,12 @@ ExclusiveArch:  do_not_build
 %define theme Tumbleweed
 %define branding tumbleweed
 %endif
-%endif
 %if "%flavor" == "openSUSE-repos-MicroOS"
 %define theme MicroOS
 %define branding microos
 %endif
+%endif
+
 %if 0%{?sle_version}
 # Leap
 %if 0%{?is_leapmicro}
