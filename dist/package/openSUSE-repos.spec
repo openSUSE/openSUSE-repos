@@ -61,6 +61,7 @@ ExclusiveArch:  do_not_build
 Name:           openSUSE-repos
 %else
 Name:           openSUSE-repos-%{theme}
+%endif
 Version:        0
 Release:        0
 Summary:        openSUSE package repositories
