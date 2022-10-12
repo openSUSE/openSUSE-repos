@@ -51,7 +51,6 @@ ExclusiveArch:  do_not_build
 %endif
 %endif
 %endif
-%endif
 
 %if "%{?theme}" == ""
 ExclusiveArch:  do_not_build
