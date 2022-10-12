@@ -25,10 +25,9 @@ ExclusiveArch:  do_not_build
 
 %global flavor @BUILD_FLAVOR@%nil
 
-%if 0%{?is_opensuse}
+%if 0%{?is_opensuse} && 0%{?suse_version} >= 1550
 # Tumbleweed
 %if "%flavor" == "openSUSE-repos-Tumbleweed"
-%if %suse_version >= 1550
 %define theme Tumbleweed
 %define branding tumbleweed
 %endif
@@ -82,7 +81,6 @@ Provides:       openSUSE-repos
 Obsoletes:      openSUSE-repos-Leap
 Obsoletes:      openSUSE-repos-LeapMicro
 %endif
-
 %if "%{?theme}" == "MicroOS"
 # Support migration from literally anything including TW to MicroOS
 Obsoletes:      openSUSE-repos-Leap
