@@ -57,6 +57,9 @@ ExclusiveArch:  do_not_build
 ExclusiveArch:  do_not_build
 %endif
 
+%if "@BUILD_FLAVOR@" == ""
+Name:           openSUSE-repos
+%else
 Name:           openSUSE-repos-%{theme}
 Version:        0
 Release:        0
