@@ -70,8 +70,6 @@ URL:            https://github.com/openSUSE/openSUSE-repos
 Source:         openSUSE-repos-%{version}.tar.xz
 #boo#1203715
 BuildRequires:  -post-build-checks
-# We're compatible with any SUSE Linux distribution
-Requires:       suse-release
 Requires:       zypper
 Conflicts:      otherproviders(openSUSE-repos)
 Provides:       openSUSE-repos
