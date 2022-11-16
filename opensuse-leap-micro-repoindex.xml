@@ -5,22 +5,22 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/distribution/%{distsub}%{distver}/product/repo/Leap-Micro-%{distver}-%{DIST_ARCH}-Media1"
+<repo url="%{disturl}/distribution/%{distsub}%{distver}/product/repo/Leap-Micro-%{distver}-$DIST_ARCH-Media1"
     alias="repo-main"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/%{distsub}%{distver}/product/repo/Leap-Micro-%{distver}-%{DIST_ARCH}-Media2"
+<repo url="%{disturl}/distribution/%{distsub}%{distver}/product/repo/Leap-Micro-%{distver}-$DIST_ARCH-Media2"
     alias="repo-debug"
     name="%{alias} (%{distver})"
-    enabled="true"
+    enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/%{distsub}%{distver}/product/repo/Leap-Micro-%{distver}-%{DIST_ARCH}-Media3"
+<repo url="%{disturl}/distribution/%{distsub}%{distver}/product/repo/Leap-Micro-%{distver}-$DIST_ARCH-Media3"
     alias="repo-source"
     name="%{alias} (%{distver})"
-    enabled="true"
+    enabled="false"
     autorefresh="true"/>
 
 <repo url="%{disturl}/update/%{distsub}%{distver}/sle"
