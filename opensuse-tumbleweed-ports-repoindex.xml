@@ -22,7 +22,7 @@
     enabled="true"
     autorefresh="true"/>
 
-<repo url="https://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
+<repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
     alias="repo-openh264"
     name="%{alias} (%{distver})"
     enabled="true"
