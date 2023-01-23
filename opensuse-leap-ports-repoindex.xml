@@ -23,4 +23,10 @@
     enabled="false"
     autorefresh="true"/>
 
+<repo url="https://codecs.opensuse.org/openh264/openSUSE_Leap"
+    alias="repo-openh264"
+    name="%{alias} (%{distver})"
+    enabled="true"
+    autorefresh="true"/>
+
 </repoindex>
