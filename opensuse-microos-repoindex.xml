@@ -30,7 +30,7 @@
 
 <repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
     alias="repo-openh264"
-    name="%{alias} (%{distver})"
+    name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
