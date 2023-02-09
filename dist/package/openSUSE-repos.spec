@@ -74,15 +74,12 @@ Requires:       zypper
 Conflicts:      otherproviders(openSUSE-repos)
 Provides:       openSUSE-repos
 %if "%{?theme}" == "Tumbleweed"
-# Unconditionally ensure Leap upgrades to Tumbleweed
 Obsoletes:      openSUSE-repos-Leap
 Obsoletes:      openSUSE-repos-LeapMicro
 %endif
 %if "%{?theme}" == "MicroOS"
-# Support migration from literally anything including TW to MicroOS
 Obsoletes:      openSUSE-repos-Leap
 Obsoletes:      openSUSE-repos-LeapMicro
-Obsoletes:      openSUSE-repos-Tumbleweed
 %endif
 
 %description
