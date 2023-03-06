@@ -25,8 +25,7 @@ ExclusiveArch:  do_not_build
 
 %global flavor @BUILD_FLAVOR@%nil
 
-# TODO this is currently older than Leap16
-%if 0%{?is_opensuse} && 0%{?suse_version} == 1599
+%if 0%{?is_opensuse} && 0%{?suse_version} >= 1550
 # Tumbleweed
 %if "%flavor" == "openSUSE-repos-Tumbleweed"
 %define theme Tumbleweed
@@ -36,7 +35,7 @@ ExclusiveArch:  do_not_build
 %define theme MicroOS
 %define branding microos
 %endif
-%if 0%{?is_opensuse} && 0%{?suse_version} == 1600
+# ALP -> Leap 16 does not use sle_version
 %if "%flavor" == "openSUSE-repos-Leap16"
 %define theme Leap16
 %define branding leap16
