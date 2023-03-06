@@ -37,7 +37,7 @@ ExclusiveArch:  do_not_build
 %define branding microos
 %endif
 %if 0%{?is_opensuse} && 0%{?suse_version} == 1600
-%if "%flavor" == "openSUSE-Leap16"
+%if "%flavor" == "openSUSE-repos-Leap16"
 %define theme Leap16
 %define branding leap16
 %endif
