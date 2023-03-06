@@ -25,7 +25,8 @@ ExclusiveArch:  do_not_build
 
 %global flavor @BUILD_FLAVOR@%nil
 
-%if 0%{?is_opensuse} && 0%{?suse_version} >= 1550
+# TODO this is currently older than Leap16
+%if 0%{?is_opensuse} && 0%{?suse_version} == 1599
 # Tumbleweed
 %if "%flavor" == "openSUSE-repos-Tumbleweed"
 %define theme Tumbleweed
@@ -34,6 +35,11 @@ ExclusiveArch:  do_not_build
 %if "%flavor" == "openSUSE-repos-MicroOS"
 %define theme MicroOS
 %define branding microos
+%endif
+%if 0%{?is_opensuse} && 0%{?suse_version} == 1600
+%if "%flavor" == "openSUSE-Leap16"
+%define theme Leap16
+%define branding leap16
 %endif
 %endif
 
@@ -81,6 +87,10 @@ Obsoletes:      openSUSE-repos-LeapMicro
 Obsoletes:      openSUSE-repos-Leap
 Obsoletes:      openSUSE-repos-LeapMicro
 %endif
+%if "%{?theme}" == "Leap16"
+Obsoletes:      openSUSE-repos-Leap
+Obsoletes:      openSUSE-repos-LeapMicro
+%endif
 
 %description
 Definitions for openSUSE repository management via zypp-services
@@ -117,6 +127,14 @@ Definitions for openSUSE repository management via zypp-services
 
 %if "%{theme}" == "Leap"
 %ifarch %{ix86} x86_64 aarch64 ppc64le s390x
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
+%else
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-ports-repoindex.xml
+%endif
+%endif
+
+%if "%{theme}" == "Leap16"
+%ifarch %{ix86} x86_64 aarch64
 %{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
 %else
 %{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-ports-repoindex.xml
