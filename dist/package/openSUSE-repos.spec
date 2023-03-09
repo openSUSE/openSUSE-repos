@@ -35,6 +35,11 @@ ExclusiveArch:  do_not_build
 %define theme MicroOS
 %define branding microos
 %endif
+# ALP -> Leap 16 does not use sle_version, ALP also uses is_opensuse 1
+%if "%flavor" == "openSUSE-repos-Leap16"
+%define theme Leap16
+%define branding leap16
+%endif
 %endif
 
 %if 0%{?sle_version}
@@ -81,6 +86,10 @@ Obsoletes:      openSUSE-repos-LeapMicro
 Obsoletes:      openSUSE-repos-Leap
 Obsoletes:      openSUSE-repos-LeapMicro
 %endif
+%if "%{?theme}" == "Leap16"
+Obsoletes:      openSUSE-repos-Leap
+Obsoletes:      openSUSE-repos-LeapMicro
+%endif
 
 %description
 Definitions for openSUSE repository management via zypp-services
@@ -117,6 +126,14 @@ Definitions for openSUSE repository management via zypp-services
 
 %if "%{theme}" == "Leap"
 %ifarch %{ix86} x86_64 aarch64 ppc64le s390x
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
+%else
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-ports-repoindex.xml
+%endif
+%endif
+
+%if "%{theme}" == "Leap16"
+%ifarch %{ix86} x86_64 aarch64
 %{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
 %else
 %{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-ports-repoindex.xml
