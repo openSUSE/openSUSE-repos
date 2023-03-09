@@ -35,7 +35,7 @@ ExclusiveArch:  do_not_build
 %define theme MicroOS
 %define branding microos
 %endif
-# ALP -> Leap 16 does not use sle_version
+# ALP -> Leap 16 does not use sle_version, ALP also uses is_opensuse 1
 %if "%flavor" == "openSUSE-repos-Leap16"
 %define theme Leap16
 %define branding leap16
