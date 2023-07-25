@@ -22,11 +22,11 @@ Repositories managed by zypp-services can be easily identified as they will have
 
 
 ## Restoring original distribution repositories**
-openSUSE-repos saves all existing  of default distribution repo files under /etc/zypp/repos.d/*.rpmsave
+openSUSE-repos does backup of all existing  default distribution repo files under /etc/zypp/repos.d/*.rpmsave
 
 As of today uninstalling openSUSE-repos **will not** restore original distribution repo files.
-You should not use rpmconf, as the original file was simply moved under a new name.
 You can restore original repo files by running following as root.
+Note: You should not use rpmconf, as the original file was simply moved under a new name.
 
 ```
 # zypper remove openSUSE-repos-*
