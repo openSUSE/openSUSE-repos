@@ -16,40 +16,26 @@ $ tree /somewhere # zypp expects repo/repoindex.xml
 
 $ zypper addservice /somewhere openSUSE # Use openSUSE prefix for all reposistories managed by service
 $ zypper ref -s # optionally force refresh services
-```
-
-## Cleanup of distribution repositories not managed by zypp-services
-
-You might want to remove old duplicate entries in */etc/zypp/repos.d/*.
 
 Repositories managed by zypp-services can be easily identified as they will have openSUSE: prefix (or any other that you have chosen).
-
-
-```
-$ ls -la /etc/zypp/repos.d/ | grep -v openSUSE: # skip service managed repos
-openSUSE-20220923-0.repo download.opensuse.org-oss.repo
-repo-debug.repo download.opensuse.org-tumbleweed.repo
-repo-source.repo
-```
-**Cleanup of old distribution repositories on a freshly installed openSUSE Tumbleweed**
-
-```
-$ sudo rm -f /etc/zypp/repos.d/download.opensuse.org-non-oss.repo \
-/etc/zypp/repos.d/openSUSE-*-0.repo \
-/etc/zypp/repos.d/download.opensuse.org-oss.repo \
-/etc/zypp/repos.d/repo-debug.repo \
-/etc/zypp/repos.d/download.opensuse.org-tumbleweed.repo \
-/etc/zypp/repos.d/repo-source.repo
 ```
 
-**Cleanup of old distribution repositories on a freshly installed openSUSE Leap 15.X**
+
+## Restoring original distribution repositories**
+openSUSE-repos saves all existing  of default distribution repo files under /etc/zypp/repos.d/*.rpmsave
+
+As of today uninstalling openSUSE-repos **will not** restore original distribution repo files.
+You should not use rpmconf, as the original file was simply moved under a new name.
+You can restore original repo files by running following as root.
 
 ```
-$ sudo rm -f  /etc/zypp/repos.d/repo-backports-debug-update.repo \
-/etc/zypp/repos.d/repo-backports-update.repo \
-/etc/zypp/repos.d/repo-sle-debug-update.repo \
-/etc/zypp/repos.d/repo-sle-update.repo
+# zypper remove openSUSE-repos-*
+
+# ls -la /etc/zypp/repos.d/*.rpmsave # review list of repos that will be restored
+# for file in /etc/zypp/repos.d/*.rpmsave; do echo mv $file `echo $file | sed -s "s/\.rpmsave//"`; done
+# zypper ref
 ```
+
 
 ## How to contribute?
 
@@ -78,7 +64,7 @@ Don't forget to send changes back to Tumbleweed and Leap once changes are merged
 
 ```
 $ osc sr Base:System openSUSE-repos openSUSE:Factory
-$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:15.5 # once merged to Factory
+$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:15.6 # once merged to Factory
 ```
 
 That's all. Happy Hacking
