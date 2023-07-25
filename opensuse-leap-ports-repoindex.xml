@@ -1,5 +1,5 @@
 <repoindex ttl="0"
-    disturl="https://download.opensuse.org"
+    disturl="https://cdn.opensuse.org"
     distsub="leap/"
     distver="${releasever}"
     debugenable="false"
