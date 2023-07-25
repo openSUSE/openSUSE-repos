@@ -21,7 +21,7 @@ Repositories managed by zypp-services can be easily identified as they will have
 ```
 
 
-## Restoring original distribution repositories**
+## Restoring original distribution repositories
 openSUSE-repos does backup of all existing  default distribution repo files under /etc/zypp/repos.d/*.rpmsave
 
 As of today uninstalling openSUSE-repos **will not** restore original distribution repo files.
