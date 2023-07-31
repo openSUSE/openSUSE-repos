@@ -2,10 +2,10 @@
 
 **Definitions for openSUSE repository management via zypp-services.**
 
+[openSUSE-repos](https://github.com/openSUSE/openSUSE-repos) simplifies openSUSE repository management by utilizing [Repository Index Service (RIS)](https://en.opensuse.org/openSUSE:Standards_Repository_Index_Service) for core distribution.
+Current version utilizes the new [cdn.opensuse.org](https://code.opensuse.org/leap/features/issue/128).
+
 This feature was originally requested as part of https://code.opensuse.org/leap/features/issue/91
-
-See official [docs](https://doc.opensuse.org/projects/libzypp/HEAD/zypp-services.html#services-usecase-4) for zypp-services for more details.
-
 
 ## Example manual usage of zypper as
 ```
