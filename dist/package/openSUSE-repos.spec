@@ -23,6 +23,7 @@
 ExclusiveArch:  do_not_build
 %endif
 
+# Each openSUSE release package has a suggests for openSUSE-repos-$flavor.
 %global flavor @BUILD_FLAVOR@%nil
 
 %if 0%{?is_opensuse} && 0%{?suse_version} >= 1550
