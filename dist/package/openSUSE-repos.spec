@@ -248,8 +248,8 @@ repo-backports-debug-update.repo repo-oss.repo repo-backports-update.repo \
 repo-sle-debug-update.repo repo-debug-non-oss.repo repo-sle-update.repo \
 repo-debug.repo repo-source.repo repo-debug-update.repo repo-update.repo \
 repo-debug-update-non-oss.repo repo-update-non-oss.repo repo-non-oss.repo \
-openSUSE-*-0.repo download.opensuse.org-oss.repo download.opensuse.org-tumbleweed.repo \
-repo-openh264.repo; do
+download.opensuse.org-oss.repo download.opensuse.org-non-oss.repo download.opensuse.org-tumbleweed.repo \
+repo-openh264.repo openSUSE-*-0.repo; do
   if [ -f %{_sysconfdir}/zypp/repos.d/$repo_file ]; then
     echo "Content of $repo_file will be newly managed by zypp-services."
     echo "Storing old copy as {_sysconfdir}/zypp/repos.d/$repo_file.rpmsave"
