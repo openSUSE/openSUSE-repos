@@ -1,7 +1,7 @@
 #
-# spec file
+# spec file for package openSUSE-repos
 #
-# Copyright (c) 2022 SUSE LLC
+# Copyright (c) 2023 SUSE LLC
 # Copyright (c) 2022 Neal Gompa <ngompa13@gmail.com>
 #
 # All modifications and additions to the file contributed by third parties
@@ -77,6 +77,9 @@ Source:         openSUSE-repos-%{version}.tar.xz
 #boo#1203715
 BuildRequires:  -post-build-checks
 Requires:       zypper
+# Ensure we install matching packages on given distribution
+# openSUSE-release has suggest on particular theme based on distribution
+Suggests:       openSUSE-repos-%{theme}-NVIDIA
 Conflicts:      otherproviders(openSUSE-repos)
 Provides:       openSUSE-repos
 %if "%{?theme}" == "Tumbleweed"
@@ -91,9 +94,6 @@ Obsoletes:      openSUSE-repos-LeapMicro
 Obsoletes:      openSUSE-repos-Leap
 Obsoletes:      openSUSE-repos-LeapMicro
 %endif
-# Ensure we install matching packages on given distribution
-# openSUSE-release has suggest on particular theme based on distribution
-Suggests:       openSUSE-repos-%{theme}-NVIDIA
 
 %description
 Definitions for openSUSE repository management via zypp-services
@@ -169,7 +169,7 @@ Definitions for NVIDIA repository management via zypp-services
 %dir %{_datadir}/zypp/local/service/NVIDIA
 %dir %{_datadir}/zypp/local/service/NVIDIA/repo
 %ghost %{_datadir}/zypp/local/service/NVIDIA/repo/repoindex.xml
-/usr/share/zypp/local/service/NVIDIA/repo/nvidia-%{branding}-repoindex.xml
+%{_datadir}/zypp/local/service/NVIDIA/repo/nvidia-%{branding}-repoindex.xml
 %ghost %{_sysconfdir}/zypp/services.d/openSUSE.service
 %{_datadir}/zypp/local/service/NVIDIA/repo/nvidia-%{branding}-repoindex.xml
 %endif
