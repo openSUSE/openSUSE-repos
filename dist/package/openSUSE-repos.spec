@@ -101,6 +101,7 @@ Definitions for openSUSE repository management via zypp-services
 %package NVIDIA
 Summary:        openSUSE NVIDIA repository definitions
 Requires:       openSUSE-repos
+Supplements:    modalias(pci:v000010DEd*sv*sd*bc03sc*i*)
 Provides:       openSUSE-repos-NVIDIA
 %if "%{?theme}" == "Tumbleweed"
 Obsoletes:      openSUSE-repos-Leap-NVIDIA
