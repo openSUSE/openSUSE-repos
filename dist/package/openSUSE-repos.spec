@@ -102,6 +102,18 @@ Definitions for openSUSE repository management via zypp-services
 Summary:        openSUSE NVIDIA repository definitions
 Requires:       openSUSE-repos
 Provides:       openSUSE-repos-NVIDIA
+%if "%{?theme}" == "Tumbleweed"
+Obsoletes:      openSUSE-repos-Leap-NVIDIA
+Obsoletes:      openSUSE-repos-LeapMicro-NVIDIA
+%endif
+%if "%{?theme}" == "MicroOS"
+Obsoletes:      openSUSE-repos-Leap-NVIDIA
+Obsoletes:      openSUSE-repos-LeapMicro-NVIDIA
+%endif
+%if "%{?theme}" == "Leap16"
+Obsoletes:      openSUSE-repos-Leap-NVIDIA
+Obsoletes:      openSUSE-repos-LeapMicro-NVIDIA
+%endif
 
 %description NVIDIA
 Definitions for NVIDIA repository management via zypp-services
