@@ -1,0 +1,13 @@
+<repoindex ttl="0"
+    disturl="https://download.nvidia.com"
+    distsub="tumbleweed/"
+    debugenable="false"
+    sourceenable="false">
+
+<repo url="%{disturl}/opensuse/%{distsub}"
+    alias="repo-non-free"
+    name="%{alias}"
+    enabled="true"
+    autorefresh="true"/>
+
+</repoindex>
