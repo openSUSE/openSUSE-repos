@@ -1,5 +1,5 @@
 <repoindex ttl="0"
-    disturl="http://cdn.opensuse.org"
+    disturl="${OPENSUSE_DISTURL:-http://cdn.opensuse.org}"
     distsub="tumbleweed/"
     debugenable="false"
     sourceenable="false">
