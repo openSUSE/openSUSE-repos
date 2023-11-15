@@ -20,23 +20,6 @@ $ zypper ref -s # optionally force refresh services
 Repositories managed by zypp-services can be easily identified as they will have openSUSE: prefix (or any other that you have chosen).
 ```
 
-## Overriding the default url
-
-openSUSE repoindex file defines default disturl for repositories under the openSUSE service
-```disturl="${OPENSUSE_DISTURL:-http://cdn.opensuse.org}"```
-
-This default can be simply overridden to point to a particular mirror by defining **OPENSUSE_DISTURL** zypp variable.
-
-```
-# echo "https://my-mirror.org" > /etc/zypp/vars.d/OPENSUSE_DISTURL
-```
-
-You can fall back again to the default dist url by
-
-```
-# rm /etc/zypp/vars.d/OPENSUSE_DISTURL
-
-```
 
 ## Restoring original distribution repositories
 openSUSE-repos does backup of all existing  default distribution repo files under /etc/zypp/repos.d/*.rpmsave
