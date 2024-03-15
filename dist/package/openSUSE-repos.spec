@@ -33,6 +33,10 @@ ExclusiveArch:  do_not_build
 %define theme Tumbleweed
 %define branding tumbleweed
 %endif
+%if "%flavor" == "openSUSE-repos-Slowroll"
+%define theme Slowroll
+%define branding slowroll
+%endif
 %if "%flavor" == "openSUSE-repos-MicroOS"
 %define theme MicroOS
 %define branding microos
@@ -92,6 +96,10 @@ Provides:       openSUSE-repos
 Obsoletes:      openSUSE-repos-Leap
 Obsoletes:      openSUSE-repos-LeapMicro
 %endif
+%if "%{?theme}" == "Slowroll"
+Obsoletes:      openSUSE-repos-Leap
+Obsoletes:      openSUSE-repos-LeapMicro
+%endif
 %if "%{?theme}" == "MicroOS"
 Obsoletes:      openSUSE-repos-Leap
 Obsoletes:      openSUSE-repos-LeapMicro
@@ -142,6 +150,12 @@ Definitions for NVIDIA repository management via zypp-services
 %{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
 %else
 %{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-ports-repoindex.xml
+%endif
+%endif
+
+%if "%{theme}" == "Slowroll"
+%ifarch x86_64
+%{_datadir}/zypp/local/service/openSUSE/repo/opensuse-%{branding}-repoindex.xml
 %endif
 %endif
 
@@ -201,6 +215,12 @@ mkdir -p %{buildroot}%{_sysconfdir}/zypp/vars.d/
 install opensuse-%{branding}-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %else ifarch aarch64 %{arm} %{power64} ppc s390x riscv64
 install opensuse-%{branding}-ports-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
+%endif
+%endif
+
+%if "%{theme}" == "Slowroll"
+%ifarch x86_64
+install opensuse-%{branding}-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/openSUSE/repo
 %endif
 %endif
 
@@ -266,6 +286,12 @@ echo "zsystems" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH
 ln -sf opensuse-%{branding}-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %else
 ln -sf opensuse-%{branding}-ports-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
+%endif
+%endif
+
+%if "%{theme}" == "Slowroll"
+%ifarch x86_64
+ln -sf opensuse-%{branding}-repoindex.xml %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %endif
 %endif
 
