@@ -144,6 +144,9 @@ Definitions for NVIDIA repository management via zypp-services
 %ghost %{_datadir}/zypp/local/service/openSUSE/repo/repoindex.xml
 %ghost %{_sysconfdir}/zypp/services.d/openSUSE.service
 %{_sysconfdir}/zypp/vars.d/DIST_ARCH
+# Overriding the default OPENSUSE_DISTURL allows a direct mirror enablement
+# We've agreed that the variable/file will not be created by default. See PR#42
+%ghost %{_sysconfdir}/zypp/vars.d/OPENSUSE_DISTURL
 
 %if "%{theme}" == "Tumbleweed"
 %ifarch %{ix86} x86_64
@@ -247,6 +250,8 @@ install opensuse-%{branding}-ports-repoindex.xml -pm 0644 %{buildroot}%{_datadir
 %if 0%{?with_nvidia}
 install nvidia-%{branding}-repoindex.xml -pm 0644 %{buildroot}%{_datadir}/zypp/local/service/NVIDIA/repo
 %endif
+
+echo "cdn.opensuse.org" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/opensuse_disturl
 
 %ifarch %{ix86}
 echo "x86" >  %{buildroot}%{_sysconfdir}/zypp/vars.d/DIST_ARCH

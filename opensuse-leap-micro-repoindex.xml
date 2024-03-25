@@ -1,5 +1,5 @@
 <repoindex ttl="0"
-    disturl="http://cdn.opensuse.org"
+    disturl="http://${OPENSUSE_DISTURL}"
     distsub="leap-micro/"
     distver="${releasever}"
     debugenable="false"
