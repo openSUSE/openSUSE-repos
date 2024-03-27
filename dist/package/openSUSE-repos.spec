@@ -331,6 +331,10 @@ repo-openh264.repo openSUSE-*-0.repo repo-main.repo; do
   fi
 done
 
+# Workaround for boo#1214135 Ensure to cleanup any dupe service repo files
+# Files will be recreated on the next refresh
+rm -f %{_sysconfdir}/zypp/repos.d/openSUSE\:*.repo*
+
 # We hereby declare that running this will not influence existing transaction
 ZYPP_READONLY_HACK=1 zypper addservice %{_datadir}/zypp/local/service/openSUSE openSUSE
 
@@ -347,6 +351,10 @@ for repo_file in NVIDIA.repo ; do
     mv %{_sysconfdir}/zypp/repos.d/$repo_file %{_sysconfdir}/zypp/repos.d/$repo_file.rpmsave
   fi
 done
+
+# Workaround for boo#1214135 Ensure to cleanup any dupe service repo files.
+# Files will be recreated on the next refresh
+rm -f %{_sysconfdir}/zypp/repos.d/NVIDIA\:*.repo*
 
 # We hereby declare that running this will not influence existing transaction
 ZYPP_READONLY_HACK=1 zypper addservice %{_datadir}/zypp/local/service/NVIDIA NVIDIA
