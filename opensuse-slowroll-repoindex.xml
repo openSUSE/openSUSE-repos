@@ -38,6 +38,7 @@
     alias="update-slowroll"
     name="%{alias}"
     enabled="true"
+    priority="80"
     autorefresh="true"/>
 
 </repoindex>
