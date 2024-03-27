@@ -1,6 +1,6 @@
 <repoindex ttl="0"
     disturl="http://cdn.opensuse.org"
-    distsub="leap/"
+    distsub="leap"
     distver="${releasever}"
     debugenable="false"
     sourceenable="false">
