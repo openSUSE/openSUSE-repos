@@ -20,6 +20,23 @@ $ zypper ref -s # optionally force refresh services
 Repositories managed by zypp-services can be easily identified as they will have openSUSE: prefix (or any other that you have chosen).
 ```
 
+## How to enable or disable source or debug repositories with openSUSE-repos
+
+### Enabling / Disabling openSUSE source repo
+```
+$ sudo zypper modifyrepo -e openSUSE:repo-oss-source 
+Repository 'openSUSE:repo-oss-source' has been successfully enabled.
+$ sudo zypper modifyrepo -d openSUSE:repo-oss-source 
+Repository 'openSUSE:repo-oss-source' has been successfully disabled.
+```
+### Enabling / Disabling openSUSE debug repo
+```
+$ sudo zypper modifyrepo -e openSUSE:repo-oss-debug
+Repository 'openSUSE:repo-oss-debug' has been successfully enabled.
+$ sudo zypper modifyrepo -d openSUSE:repo-oss-debug
+Repository 'openSUSE:repo-oss-debug' has been successfully disabled.
+```
+
 
 ## Restoring original distribution repositories
 openSUSE-repos does backup of all existing  default distribution repo files under /etc/zypp/repos.d/*.rpmsave
