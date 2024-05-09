@@ -82,6 +82,8 @@ Don't forget to send changes back to Tumbleweed and Leap once changes are merged
 ```
 $ osc sr Base:System openSUSE-repos openSUSE:Factory
 $ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:15.6 # once merged to Factory
+$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:16.0 # once merged to Factory
+$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:Micro:6.0 # once merged to Factory
 ```
 
 That's all. Happy Hacking
