@@ -5,31 +5,31 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/distribution/%{distsub}%{distver}/repo/oss"
+<repo url="%{disturl}/distribution/%{distsub}/%{distver}/repo/oss"
     alias="repo-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/distribution/%{distsub}%{distver}/repo/oss"
+<repo url="%{disturl}/debug/distribution/%{distsub}/%{distver}/repo/oss"
     alias="repo-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/source/distribution/%{distsub}%{distver}/repo/oss"
+<repo url="%{disturl}/source/distribution/%{distsub}/%{distver}/repo/oss"
     alias="repo-oss-source"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/%{distsub}%{distver}/repo/non-oss"
+<repo url="%{disturl}/distribution/%{distsub}/%{distver}/repo/non-oss"
     alias="repo-non-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/distribution/%{distsub}%{distver}/repo/non-oss"
+<repo url="%{disturl}/debug/distribution/%{distsub}/%{distver}/repo/non-oss"
     alias="repo-non-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
@@ -41,49 +41,49 @@
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}%{distver}/oss"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/oss"
     alias="update-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/update/%{distsub}%{distver}/oss"
+<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/oss"
     alias="update-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}%{distver}/non-oss"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/non-oss"
     alias="update-non-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/update/%{distsub}%{distver}/non-oss"
+<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/non-oss"
     alias="update-non-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}%{distver}/backports"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/backports"
     alias="update-backports"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}%{distver}/backports_debug"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/backports_debug"
     alias="update-backports-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}%{distver}/sle"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/sle"
     alias="update-sle"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/update/%{distsub}%{distver}/sle"
+<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/sle"
     alias="update-sle-debug"
     name="%{alias} (%{distver})"
     enabled="false"
