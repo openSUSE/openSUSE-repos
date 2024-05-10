@@ -5,7 +5,7 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/opensuse/%{distsub}%{distver}"
+<repo url="%{disturl}/opensuse/%{distsub}/%{distver}"
     alias="repo-non-free"
     name="%{alias} (%{distver})"
     enabled="true"
