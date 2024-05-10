@@ -1,4 +1,4 @@
-# openSUSE-repos
+    # openSUSE-repos
 
 **Definitions for openSUSE repository management via zypp-services.**
 
@@ -40,7 +40,8 @@ Repository 'openSUSE:repo-oss-debug' has been successfully disabled.
 ### There is a typo in repository definition how can I fix it myself?
 
 ```
-vim /usr/share/zypp/local/service/openSUSE/repo/repoindex.xml
+$ vim /usr/share/zypp/local/service/openSUSE/repo/repoindex.xml
+$ zypper ref -s # to refresh services
 ```
 
 ## Restoring original distribution repositories
