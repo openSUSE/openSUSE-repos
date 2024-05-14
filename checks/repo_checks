@@ -1,0 +1,62 @@
+#!/bin/bash
+
+set -e 
+
+export CURRDIR="$(dirname -- "${BASH_SOURCE[0]}")"
+
+for path in ${CURRDIR}/../*.xml; do
+    filename=`basename $path`
+    echo "Checking repo definitions in $filaname"
+    export disturl=`grep "disturl=" $path | awk -F"=" '{ print $2 }' | sed 's/"//g' | sed "s/'//g"`
+    export distsub=`grep "distsub=" $path | awk -F"=" '{ print $2 }' | sed 's/"//g' | sed "s/'//g"`
+    echo "[INFO] $filename disturl=${disturl}"
+    echo "[INFO] $filename distsub=${distsub}"
+   
+    export distver="tumbleweed" # Default 
+    export distarch="zsystems" # we expect s390x to be around
+    # Manually managed in the test
+    if [ "$distsub" == "leap" ]; then
+        export distver="15.5" # Should be bumped periodically
+        export distarch="armv7hl" # we expect s390x to be around
+    fi
+    if [ "$distsub" == "leap-micro" ]; then
+        export distver="5.5" # Should be bumped periodically
+        export distarch="aarch64" # or x86_64 would work too
+    fi
+    echo "[INFO] Using harcoded distver=$distver"
+    echo "[INFO] Using harcoded distarch=$distarch"
+
+
+
+    # Expand all variables in url paths and check if they exist    
+    grep '<repo url' ${path} | while read line; do
+        url=`echo $line | awk -F"=" '{ print $2 }' | sed 's/"//g' | sed "s/'//g"`
+        #echo "url=${url}"
+        expanded_url=`echo $url \
+        | awk -v u="$distver" '{gsub(/%{distver}/,u)}1' \
+        | awk -v u="$disturl" '{gsub(/%{disturl}/,u)}1' \
+        | awk -v u="$distsub" '{gsub(/%{distsub}/,u)}1' \
+        | awk -v u="$distarch" '{gsub(/\\$DIST_ARCH/,u)}1'` # /etc/zypp/vars.d/DIST_ARCH  ports and LEAPM are using it
+        echo "[INFO] expanded_url=$expanded_url"
+
+        # Check 1 - unexpanded zypp %{} variables
+        if [[ $expanded_url = *"%{"* ]]; then
+            echo "[ERROR] $filename - Unexpanded variable found in $expanded_url"
+            exit 1
+        fi
+
+        # Check 2 - Custom user variables, as of today we define only "$"
+        if [[ $expanded_url = *"$"* ]]; then
+            echo "[ERROR] $filename - Unexpanded shell \$ variable found in $expanded_url"
+            exit 2
+        fi
+
+        # Check 3 - URL availability
+        if curl --head --silent --fail "${expanded_url}/repodata/repomd.xml"  > /dev/null 2>&1; then
+            echo "[OK] - $filename - Url "${expanded_url}/repodata/repomd.xml" exists."
+         else
+            echo "[ERROR] - $filename - Url "${expanded_url}/repodata/repomd.xml" does not exist."
+            exit 3
+        fi
+    done
+done
