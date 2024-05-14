@@ -9,17 +9,23 @@ for path in ${CURRDIR}/../*.xml; do
     echo "Checking repo definitions in $filaname"
     export disturl=`grep "disturl=" $path | awk -F"=" '{ print $2 }' | sed 's/"//g' | sed "s/'//g"`
     export distsub=`grep "distsub=" $path | awk -F"=" '{ print $2 }' | sed 's/"//g' | sed "s/'//g"`
-    
-    # Manually managed in the test
-    #distver=`grep "distver=" $path | awk -F"=" '{print $2'}`
-    export distver="15.6" # Should be bumped periodically
-    echo "[INFO] Using harcoded distver=$distver"
-    export distarch="zsystems" # we expect s390x to be around
-    echo "[INFO] Using harcoded distarch=$distver"
-
     echo "[INFO] $filename disturl=${disturl}"
     echo "[INFO] $filename distsub=${distsub}"
-    echo "[INFO] $filename distver=${distsub}"
+   
+    export distver="tumbleweed" # Default 
+    export distarch="zsystems" # we expect s390x to be around
+    # Manually managed in the test
+    if [ "$distsub" == "leap" ]; then
+        export distver="15.5" # Should be bumped periodically
+        export distarch="armv7hl" # we expect s390x to be around
+    fi
+    if [ "$distsub" == "leap-micro" ]; then
+        export distver="5.5" # Should be bumped periodically
+        export distarch="aarch64" # or x86_64 would work too
+    fi
+    echo "[INFO] Using harcoded distver=$distver"
+    echo "[INFO] Using harcoded distarch=$distarch"
+
 
 
     # Expand all variables in url paths and check if they exist    
