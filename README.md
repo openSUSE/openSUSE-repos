@@ -64,6 +64,9 @@ Note: You should not use rpmconf, as the original file was simply moved under a 
 
 Package is developed in [GitHub/openSUSE](https://github.com/openSUSE/openSUSE-repos/).
 
+We have a [simple CI](https://github.com/openSUSE/openSUSE-repos/actions) which runs [repo_checks](https://github.com/openSUSE/openSUSE-repos/blob/main/checks/repo_checks) to ensure that paths are correct.
+
+
 Package needs to be manually updated in [OBS](https://build.opensuse.org/package/show/Base:System/openSUSE-repos) once changes are merged in GitHub.
 
 Make sure to install osc and required obs services by openSUSE-repos package
