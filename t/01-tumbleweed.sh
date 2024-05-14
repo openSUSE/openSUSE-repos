@@ -12,6 +12,6 @@ grep -r baseurl /etc/zypp/repos.d
 grep -r baseurl /etc/zypp/repos.d | grep -q cdn.opensuse.org
 
 # make sure we can install a random package
-zypper -vvvn in vim
+zypper -vvvn in vim-small
 
 echo success
