@@ -17,11 +17,6 @@
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/ports/$DIST_ARCH/debug/distribution/%{distsub}/%{distver}/repo/oss"
-    alias="repo-oss-debug"
-    name="%{alias} (%{distver})"
-    enabled="false"
-    autorefresh="true"/>
 
 <repo url="http://codecs.opensuse.org/openh264/openSUSE_Leap"
     alias="repo-openh264"
