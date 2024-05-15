@@ -27,4 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell. use run: | to run multiple (command per line)
       - name: Run a one-line script
-        run: checks/repo_checks
+        run: bash checks/repo_checks
