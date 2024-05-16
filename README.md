@@ -41,7 +41,7 @@ Repository 'openSUSE:repo-oss-debug' has been successfully disabled.
 
 ```
 $ vim /usr/share/zypp/local/service/openSUSE/repo/repoindex.xml
-$ zypper ref -s # to refresh services
+$ zypper --gpg-auto-import-keys ref -s # to refresh services
 ```
 
 ## Restoring original distribution repositories
