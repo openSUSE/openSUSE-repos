@@ -66,6 +66,8 @@ Package is developed in [GitHub/openSUSE](https://github.com/openSUSE/openSUSE-r
 
 We have a [simple CI](https://github.com/openSUSE/openSUSE-repos/actions) which runs [repo_checks](https://github.com/openSUSE/openSUSE-repos/blob/main/checks/repo_checks) to ensure that paths are correct.
 
+Before we enroll update to openSUSE users it has to pass [openQA test](https://github.com/os-autoinst/os-autoinst-distri-opensuse/blob/master/tests/console/opensuse_repos.pm).
+
 
 Package needs to be manually updated in [OBS](https://build.opensuse.org/package/show/Base:System/openSUSE-repos) once changes are merged in GitHub.
 
