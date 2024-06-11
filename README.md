@@ -15,7 +15,7 @@ $ tree /somewhere # zypp expects repo/repoindex.xml
     └── repoindex.xml
 
 $ zypper addservice /somewhere openSUSE # Use openSUSE prefix for all reposistories managed by service
-$ zypper ref -s # optionally force refresh services
+$ zypper --gpg-auto-import-keys ref -s # optionally force refresh services
 
 Repositories managed by zypp-services can be easily identified as they will have openSUSE: prefix (or any other that you have chosen).
 ```
