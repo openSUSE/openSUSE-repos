@@ -20,7 +20,11 @@ for path in ${CURRDIR}/../*.xml; do
         export distarch="armv7hl" # we expect s390x to be around
     fi
     if [ "$distsub" == "leap-micro" ]; then
-        export distver="5.5" # Should be bumped periodically
+        if [[ $filename == *"leap-micro6"* ]]; then
+            export distver="6.0" # Should be bumped periodically
+        else
+            export distver="5.5" # Should be bumped periodically
+        fi
         export distarch="aarch64" # or x86_64 would work too
     fi
     echo "[INFO] Using harcoded distver=$distver"
