@@ -5,19 +5,19 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/Leap-Micro-%{distver}-$DIST_ARCH"
+<repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH"
     alias="repo-main"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/Leap-Micro-%{distver}-$DIST_ARCH-Debug"
+<repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH-Debug"
     alias="repo-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/Leap-Micro-%{distver}-$DIST_ARCH-Source"
+<repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH-Source"
     alias="repo-source"
     name="%{alias} (%{distver})"
     enabled="false"
