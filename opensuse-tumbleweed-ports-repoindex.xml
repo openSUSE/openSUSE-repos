@@ -6,25 +6,25 @@
 
 <repo url="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/oss"
     alias="repo-oss"
-    name="%{alias} (%{distver})"
+    name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
 <repo url="%{disturl}/ports/$DIST_ARCH/debug/%{distsub}/repo/oss"
     alias="repo-oss-debug"
-    name="%{alias} (%{distver})"
+    name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
 <repo url="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/oss"
     alias="repo-oss-source"
-    name="%{alias} (%{distver})"
+    name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
 <repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
     alias="repo-openh264"
-    name="%{alias} (%{distver})"
+    name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
