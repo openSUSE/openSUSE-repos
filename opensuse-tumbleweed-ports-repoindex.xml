@@ -29,7 +29,7 @@
     autorefresh="true"/>
 
 <repo url="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/non-oss"
-    alias="repo-non-oss"
+    alias="repo-non-oss-source"
     name="%{alias}"
     enabled="false"
     autorefresh="true"/>
