@@ -13,13 +13,13 @@
 <repo url="%{disturl}/ports/$DIST_ARCH/debug/%{distsub}/repo/oss"
     alias="repo-oss-debug"
     name="%{alias}"
-    enabled="true"
+    enabled="false"
     autorefresh="true"/>
 
 <repo url="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/oss"
     alias="repo-oss-source"
     name="%{alias}"
-    enabled="true"
+    enabled="false"
     autorefresh="true"/>
 
 <repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
