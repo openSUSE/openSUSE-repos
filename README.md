@@ -69,7 +69,7 @@ We have a [simple CI](https://github.com/openSUSE/openSUSE-repos/actions) which 
 Before we enroll update to openSUSE users it has to pass [openQA test](https://github.com/os-autoinst/os-autoinst-distri-opensuse/blob/master/tests/console/opensuse_repos.pm).
 
 
-Package needs to be manually updated in [OBS](https://build.opensuse.org/package/show/Base:System/openSUSE-repos) once changes are merged in GitHub.
+Package or its [.spec file](https://build.opensuse.org/projects/Base:System/packages/openSUSE-repos/files/openSUSE-repos.spec?expand=1) needs to be manually updated in [OBS](https://build.opensuse.org/package/show/Base:System/openSUSE-repos) once changes are merged in GitHub.
 
 Make sure to install osc and required obs services by openSUSE-repos package
 
