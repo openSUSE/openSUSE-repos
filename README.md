@@ -82,7 +82,7 @@ Fork the repository in OBS, fetch latest request and make a submit request.
 ```
 $ osc bco Base:System/openSUSE-repos
 cd home:i*:branches:Base:System/openSUSE-repos
-osc service runall
+osc service mr
 osc addremove
 osc commit # changelog can be reviewed by osc vc
 osc sr # submit request back to Base:System
