@@ -38,12 +38,18 @@ Repository 'openSUSE:repo-oss-debug' has been successfully disabled.
 ```
 
 ### There is a typo in repository definition how can I fix it myself?
-
 ```
 $ vim /usr/share/zypp/local/service/openSUSE/repo/repoindex.xml
 $ zypper --gpg-auto-import-keys ref -s # to refresh services
 ```
 
+### Reloading / Refreshing list of repositories
+
+It might initially happen that system shows no repositories. This can be easily fixed by running either 
+```
+# sudo zypper refresh-services # or simply zypper refs ... re-generate repository definitions without refreshing repodata
+# sudo zypper refresh -s # or simply zypper ref -s ...  re-generate repository definitions and refresh repodata
+```
 ## Restoring original distribution repositories
 openSUSE-repos does backup of all existing  default distribution repo files under /etc/zypp/repos.d/*.rpmsave
 
