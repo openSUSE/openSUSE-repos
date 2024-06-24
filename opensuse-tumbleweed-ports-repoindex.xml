@@ -22,6 +22,18 @@
     enabled="false"
     autorefresh="true"/>
 
+<repo url="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/non-oss"
+    alias="repo-non-oss"
+    name="%{alias}"
+    enabled="false"
+    autorefresh="true"/>
+
+<repo url="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/non-oss"
+    alias="repo-non-oss-source"
+    name="%{alias}"
+    enabled="false"
+    autorefresh="true"/>
+
 <repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
     alias="repo-openh264"
     name="%{alias}"
