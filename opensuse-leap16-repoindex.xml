@@ -1,0 +1,14 @@
+<repoindex ttl="0"
+    disturl="https://download.opensuse.org"
+    distsub="leap"
+    distver="${releasever}"
+    debugenable="false"
+    sourceenable="false">
+
+<repo url="%{disturl}/repositories/openSUSE:/Leap:/16.0/standard/
+    alias="repo-oss"
+    name="%{alias} (16.0)"
+    enabled="true"
+    autorefresh="true"/>
+
+</repoindex>
