@@ -16,8 +16,13 @@ for path in ${CURRDIR}/../*.xml; do
     export distarch="zsystems" # we expect s390x to be around
     # Manually managed in the test
     if [ "$distsub" == "leap" ]; then
-        export distver="15.5" # Should be bumped periodically
-        export distarch="armv7hl" # we expect s390x to be around
+        if [[ $filename == *"leap16"* ]]; then
+            export distver="16.0" # Should be bumped periodically
+            export distarch="x86_64"
+        else
+            export distver="15.5" # Should be bumped periodically
+            export distarch="armv7hl" # we expect s390x to be around
+        fi
     fi
     if [ "$distsub" == "leap-micro" ]; then
         if [[ $filename == *"leap-micro6"* ]]; then
