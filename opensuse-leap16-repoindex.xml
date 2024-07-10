@@ -5,7 +5,7 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/repositories/openSUSE:/Leap:/16.0/standard/
+<repo url="%{disturl}/repositories/openSUSE:/Leap:/16.0/standard/"
     alias="repo-standard"
     name="%{alias} (%{distver})"
     enabled="true"
