@@ -5,25 +5,19 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/repositories/openSUSE:/Leap:/16.0/standard/"
-    alias="repo-standard"
-    name="%{alias} (%{distver})"
-    enabled="true"
-    autorefresh="true"/>
-
-<repo url="%{disturl}/repositories/openSUSE:/Leap:/16.0/product/repo/Leap-Packages-16.0-$DIST_ARCH"
+<repo url="%{disturl}/distribution/leap/%{distver}/repo/oss"
     alias="repo-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/repositories/openSUSE:/Leap:/16.0/product/repo/Leap-Packages-16.0-$DIST_ARCH-Debug"
+<repo url="%{disturl}/debug/distribution/leap/%{distver}/repo/oss"
     alias="repo-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/repositories/openSUSE:/Leap:/16.0/product/repo/Leap-Packages-16.0-$DIST_ARCH-Source"
+<repo url="%{disturl}/source/distribution/leap/%{distver}/repo/oss"
     alias="repo-oss-source"
     name="%{alias} (%{distver})"
     enabled="false"
