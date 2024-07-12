@@ -11,7 +11,7 @@
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/leap/16.0/repo/oss"
+<repo url="%{disturl}/distribution/leap/%{distver}/repo/oss"
     alias="repo-oss"
     name="%{alias} (%{distver})"
     enabled="true"
