@@ -5,13 +5,13 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/distribution/leap/%{distver}/repo/oss"
+<repo url="%{disturl}/distribution/leap/%{distver}/repo/oss/$arch"
     alias="repo-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/distribution/leap/%{distver}/repo/oss"
+<repo url="%{disturl}/debug/distribution/leap/%{distver}/repo/oss/$arch"
     alias="repo-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
