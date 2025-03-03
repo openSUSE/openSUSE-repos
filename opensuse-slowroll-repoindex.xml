@@ -4,37 +4,37 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/%{distsub}/repo/oss?mediahandler=curl2"
+<repo url="%{disturl}/%{distsub}/repo/oss"
     alias="repo-oss"
     name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/%{distsub}/repo/oss?mediahandler=curl2"
+<repo url="%{disturl}/debug/%{distsub}/repo/oss"
     alias="repo-oss-debug"
     name="%{alias}"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/source/%{distsub}/repo/oss?mediahandler=curl2"
+<repo url="%{disturl}/source/%{distsub}/repo/oss"
     alias="repo-oss-source"
     name="%{alias}"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/%{distsub}/repo/non-oss?mediahandler=curl2"
+<repo url="%{disturl}/%{distsub}/repo/non-oss"
     alias="repo-non-oss"
     name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed?mediahandler=curl2"
+<repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
     alias="repo-openh264"
     name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}/repo/oss?mediahandler=curl2"
+<repo url="%{disturl}/update/%{distsub}/repo/oss"
     alias="update-slowroll"
     name="%{alias}"
     enabled="true"
