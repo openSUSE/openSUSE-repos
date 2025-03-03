@@ -5,85 +5,85 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/distribution/%{distsub}/%{distver}/repo/oss"
+<repo url="%{disturl}/distribution/%{distsub}/%{distver}/repo/oss?mediahandler=curl2"
     alias="repo-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/distribution/%{distsub}/%{distver}/repo/oss"
+<repo url="%{disturl}/debug/distribution/%{distsub}/%{distver}/repo/oss?mediahandler=curl2"
     alias="repo-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/source/distribution/%{distsub}/%{distver}/repo/oss"
+<repo url="%{disturl}/source/distribution/%{distsub}/%{distver}/repo/oss?mediahandler=curl2"
     alias="repo-oss-source"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/%{distsub}/%{distver}/repo/non-oss"
+<repo url="%{disturl}/distribution/%{distsub}/%{distver}/repo/non-oss?mediahandler=curl2"
     alias="repo-non-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/distribution/%{distsub}/%{distver}/repo/non-oss"
+<repo url="%{disturl}/debug/distribution/%{distsub}/%{distver}/repo/non-oss?mediahandler=curl2"
     alias="repo-non-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="http://codecs.opensuse.org/openh264/openSUSE_Leap"
+<repo url="http://codecs.opensuse.org/openh264/openSUSE_Leap?mediahandler=curl2"
     alias="repo-openh264"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}/%{distver}/oss"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/oss?mediahandler=curl2"
     alias="update-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/oss"
+<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/oss?mediahandler=curl2"
     alias="update-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}/%{distver}/non-oss"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/non-oss?mediahandler=curl2"
     alias="update-non-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/non-oss"
+<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/non-oss?mediahandler=curl2"
     alias="update-non-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}/%{distver}/backports"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/backports?mediahandler=curl2"
     alias="update-backports"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}/%{distver}/backports_debug"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/backports_debug?mediahandler=curl2"
     alias="update-backports-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/update/%{distsub}/%{distver}/sle"
+<repo url="%{disturl}/update/%{distsub}/%{distver}/sle?mediahandler=curl2"
     alias="update-sle"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/sle"
+<repo url="%{disturl}/debug/update/%{distsub}/%{distver}/sle?mediahandler=curl2"
     alias="update-sle-debug"
     name="%{alias} (%{distver})"
     enabled="false"
