@@ -47,7 +47,7 @@ for path in ${CURRDIR}/../*.xml; do
         | awk -v u="$distver" '{gsub(/%{distver}/,u)}1' \
         | awk -v u="$disturl" '{gsub(/%{disturl}/,u)}1' \
         | awk -v u="$distsub" '{gsub(/%{distsub}/,u)}1' \
-        | awk -v u="$basearch" '{gsub(/$basearch/,u)}1' \
+        | awk -v u="$basearch" '{gsub(/\\$basearch/,u)}1' \
         | awk -v u="$distarch" '{gsub(/\\$DIST_ARCH/,u)}1'` # /etc/zypp/vars.d/DIST_ARCH  ports and LEAPM are using it
         echo "[INFO] expanded_url=$expanded_url"
 
