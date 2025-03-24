@@ -23,6 +23,18 @@
     enabled="false"
     autorefresh="true"/>
 
+<repo url="%{disturl}/distribution/leap/%{distver}/repo/non-oss/$basearch?mediahandler=curl2"
+    alias="repo-non-oss"
+    name="%{alias} (%{distver})"
+    enabled="false"
+    autorefresh="true"/>
+
+<repo url="%{disturl}/debug/distribution/leap/%{distver}/repo/non-oss/$basearch?mediahandler=curl2"
+    alias="repo-non-oss-debug"
+    name="%{alias} (%{distver})"
+    enabled="false"
+    autorefresh="true"/>
+
 <repo url="http://codecs.opensuse.org/openh264/openSUSE_Leap_16"
     alias="repo-openh264"
     name="%{alias} (%{distver})"
