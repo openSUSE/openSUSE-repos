@@ -5,31 +5,41 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/distribution/leap/%{distver}/repo/oss/$basearch?mediahandler=curl2"
+<repo url="%{disturl}/distribution/leap/%{distver}/repo/oss/$basearch"
+    mirrorlist="%{disturl}/distribution/leap/%{distver}/repo/oss/$basearch/?mirrorlist"
+    gpgkey="%{disturl}/distribution/leap/%{distver}/repo/oss/$basearch/repodata/repomd.xml.key"
     alias="repo-oss"
     name="%{alias} (%{distver})"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/distribution/leap/%{distver}/repo/oss/$basearch?mediahandler=curl2"
+<repo url="%{disturl}/debug/distribution/leap/%{distver}/repo/oss/$basearch"
+    mirrorlist="%{disturl}/debug/distribution/leap/%{distver}/repo/oss/$basearch/?mirrorlist"
+    gpgkey="%{disturl}/debug/distribution/leap/%{distver}/repo/oss/$basearch/repodata/repomd.xml.key"
     alias="repo-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/source/distribution/leap/%{distver}/repo/oss?mediahandler=curl2"
+<repo url="%{disturl}/source/distribution/leap/%{distver}/repo/oss"
+    mirrorlist="%{disturl}/source/distribution/leap/%{distver}/repo/oss/?mirrorlist"
+    gpgkey="%{disturl}/source/distribution/leap/%{distver}/repo/oss/repodata/repomd.xml.key"
     alias="repo-oss-source"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/distribution/leap/%{distver}/repo/non-oss/$basearch?mediahandler=curl2"
+<repo url="%{disturl}/distribution/leap/%{distver}/repo/non-oss/$basearch"
+    mirrorlist="%{disturl}/distribution/leap/%{distver}/repo/non-oss/$basearch/?mirrorlist"
+    gpgkey="%{disturl}/distribution/leap/%{distver}/repo/non-oss/$basearch/repodata/repomd.xml.key"
     alias="repo-non-oss"
     name="%{alias} (%{distver})"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/debug/distribution/leap/%{distver}/repo/non-oss/$basearch?mediahandler=curl2"
+<repo url="%{disturl}/debug/distribution/leap/%{distver}/repo/non-oss/$basearch"
+    mirrorlist="%{disturl}/debug/distribution/leap/%{distver}/repo/non-oss/$basearch/?mirrorlist"
+    gpgkey="%{disturl}/debug/distribution/leap/%{distver}/repo/non-oss/$basearch/repodata/repomd.xml.key"
     alias="repo-non-oss-debug"
     name="%{alias} (%{distver})"
     enabled="false"
