@@ -4,43 +4,53 @@
     debugenable="false"
     sourceenable="false">
 
-<repo url="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/oss?mediahandler=curl2"
+<repo url="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/oss"
+    mirrorlist="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/oss/?mirrorlist"
+    gpgkey="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/oss/repodata/repomd.xml.key"
     alias="repo-oss"
     name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/ports/$DIST_ARCH/debug/%{distsub}/repo/oss?mediahandler=curl2"
+<repo url="%{disturl}/ports/$DIST_ARCH/debug/%{distsub}/repo/oss"
+    mirrorlist="%{disturl}/ports/$DIST_ARCH/debug/%{distsub}/repo/oss/?mirrorlist"
+    gpgkey="%{disturl}/ports/$DIST_ARCH/debug/%{distsub}/repo/oss/repodata/repomd.xml.key"
     alias="repo-oss-debug"
     name="%{alias}"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/oss?mediahandler=curl2"
+<repo url="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/oss"
+    mirrorlist="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/oss/?mirrorlist"
+    gpgkey="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/oss/repodata/repomd.xml.key"
     alias="repo-oss-source"
     name="%{alias}"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/non-oss?mediahandler=curl2"
+<repo url="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/non-oss"
+    mirrorlist="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/non-oss/?mirrorlist"
+    gpgkey="%{disturl}/ports/$DIST_ARCH/%{distsub}/repo/non-oss/repodata/repomd.xml.key"
     alias="repo-non-oss"
     name="%{alias}"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/non-oss?mediahandler=curl2"
+<repo url="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/non-oss"
+    mirrorlist="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/non-oss/?mirrorlist"
+    gpgkey="%{disturl}/ports/$DIST_ARCH/source/%{distsub}/repo/non-oss/repodata/repomd.xml.key"
     alias="repo-non-oss-source"
     name="%{alias}"
     enabled="false"
     autorefresh="true"/>
 
-<repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed?mediahandler=curl2"
+<repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
     alias="repo-openh264"
     name="%{alias}"
     enabled="true"
     autorefresh="true"/>
 
-<repo url="%{disturl}/ports/$DIST_ARCH/update/%{distsub}?mediahandler=curl2"
+<repo url="%{disturl}/ports/$DIST_ARCH/update/%{distsub}"
     alias="update-tumbleweed"
     name="%{alias}"
     enabled="true"

@@ -1,74 +1,105 @@
 #!/bin/bash
 
-set -e 
+set -e
 
-export CURRDIR="$(dirname -- "${BASH_SOURCE[0]}")"
+CURRDIR="$(dirname -- "${BASH_SOURCE[0]}")"
 
-for path in ${CURRDIR}/../*.xml; do
-    filename=`basename $path`
-    echo "Checking repo definitions in $filaname"
-    export disturl=`grep "disturl=" $path | awk -F"=" '{ print $2 }' | sed 's/"//g' | sed "s/'//g"`
-    export distsub=`grep "distsub=" $path | awk -F"=" '{ print $2 }' | sed 's/"//g' | sed "s/'//g"`
-    echo "[INFO] $filename disturl=${disturl}"
-    echo "[INFO] $filename distsub=${distsub}"
-   
-    export distver="tumbleweed" # Default 
-    export distarch="zsystems" # we expect s390x to be around
-    export basearch="x86_64" # only used by Leap 16.0 see PR#77
+expand_and_check_url() {
+    local raw_url=$1
+    local label=$2
 
-    # Manually managed in the test
-    if [ "$distsub" == "leap" ]; then
-        if [[ $filename == *"leap16"* ]]; then
-            export distver="16.0" # Should be bumped periodically
-            export distarch="x86_64"
-        else
-            export distver="15.5" # Should be bumped periodically
-            export distarch="armv7hl" # we expect s390x to be around
-        fi
-    fi
-    if [ "$distsub" == "leap-micro" ]; then
-        if [[ $filename == *"leap-micro6"* ]]; then
-            export distver="6.0" # Should be bumped periodically
-        else
-            export distver="5.5" # Should be bumped periodically
-        fi
-        export distarch="aarch64" # or x86_64 would work too
-    fi
-    echo "[INFO] Using harcoded distver=$distver"
-    echo "[INFO] Using harcoded distarch=$distarch"
-
-
-
-    # Expand all variables in url paths and check if they exist    
-    grep '<repo url' ${path} | while read line; do
-        url=`echo $line | awk -F"=" '{ print $2 }' | sed 's/"//g' | sed "s/'//g"`
-        #echo "url=${url}"
-        expanded_url=`echo $url \
+    local expanded_url=$(echo "$raw_url" \
         | awk -v u="$distver" '{gsub(/%{distver}/,u)}1' \
         | awk -v u="$disturl" '{gsub(/%{disturl}/,u)}1' \
         | awk -v u="$distsub" '{gsub(/%{distsub}/,u)}1' \
-        | awk -v u="$basearch" '{gsub(/\\$basearch/,u)}1' \
-        | awk -v u="$distarch" '{gsub(/\\$DIST_ARCH/,u)}1'` # /etc/zypp/vars.d/DIST_ARCH  ports and LEAPM are using it
-        echo "[INFO] expanded_url=$expanded_url"
+        | awk -v u="$basearch" '{gsub(/\$basearch/,u)}1' \
+        | awk -v u="$distarch" '{gsub(/\$DIST_ARCH/,u)}1')
 
-        # Check 1 - unexpanded zypp %{} variables
-        if [[ $expanded_url = *"%{"* ]]; then
-            echo "[ERROR] $filename - Unexpanded variable found in $expanded_url"
-            exit 1
-        fi
+    echo "[INFO] expanded_url=$expanded_url"
 
-        # Check 2 - Custom user variables, as of today we define only "$"
-        if [[ $expanded_url = *"$"* ]]; then
-            echo "[ERROR] $filename - Unexpanded shell \$ variable found in $expanded_url"
-            exit 2
-        fi
+    if [[ $expanded_url == *"%{"* ]]; then
+        echo "[ERROR] $filename - Unexpanded variable found in $expanded_url"
+        exit 1
+    fi
 
-        # Check 3 - URL availability
-        if curl --head --silent --fail "${expanded_url}/repodata/repomd.xml"  > /dev/null 2>&1; then
-            echo "[OK] - $filename - Url "${expanded_url}/repodata/repomd.xml" exists."
-         else
-            echo "[ERROR] - $filename - Url "${expanded_url}/repodata/repomd.xml" does not exist."
+    if [[ $expanded_url == *"\$"* ]]; then
+        echo "[ERROR] $filename - Unexpanded shell \$ variable found in $expanded_url"
+        exit 2
+    fi
+
+    # Append path if needed
+    local url_check=$expanded_url
+    [[ "$label" == "repo" ]] && url_check="${expanded_url}/repodata/repomd.xml"
+
+    if [[ "$label" == "mirrorlist" ]]; then
+        if [[ "$expanded_url" == *\?* ]]; then
+            # Separate base and query parts
+            base="${expanded_url%%\?*}"             # Strip everything after ?
+            query="${expanded_url#*\?}"             # Extract everything after ?
+            url_check="${base}/repodata/repomd.xml?${query}"
+        else
+            echo "[ERROR] $filename no ?variable part found in $expanded_url. Expected /?mirrorlist"
             exit 3
         fi
+    fi
+
+    if curl --head --silent --fail "$url_check" > /dev/null 2>&1; then
+        echo "[OK] - $filename - Url $url_check exists."
+    else
+        echo "[ERROR] - $filename - Url $url_check does not exist."
+        exit 3
+    fi
+}
+
+for path in "$CURRDIR"/../*.xml; do
+    filename=$(basename "$path")
+    echo "Checking repo definitions in $filename"
+
+    disturl=$(grep "disturl=" "$path" | awk -F"=" '{print $2}' | tr -d "\"'")
+    distsub=$(grep "distsub=" "$path" | awk -F"=" '{print $2}' | tr -d "\"'")
+
+    echo "[INFO] $filename disturl=$disturl"
+    echo "[INFO] $filename distsub=$distsub"
+
+    distver="tumbleweed"
+    distarch="zsystems"
+    basearch="x86_64"
+
+    if [[ $distsub == "leap" ]]; then
+        if [[ $filename == *"leap16"* ]]; then
+            distver="16.0"
+            distarch="x86_64"
+        else
+            distver="15.5"
+            distarch="armv7hl"
+        fi
+    elif [[ $distsub == "leap-micro" ]]; then
+        if [[ $filename == *"leap-micro6"* ]]; then
+            distver="6.0"
+        else
+            distver="5.5"
+        fi
+        distarch="aarch64"
+    fi
+
+    echo "[INFO] Using hardcoded distver=$distver"
+    echo "[INFO] Using hardcoded distarch=$distarch"
+
+    # Check <repo url>
+    grep '<repo url' "$path" | while read -r line; do
+        raw_url=$(echo "$line" | awk -F"=" '{print $2}' | tr -d "\"'")
+        expand_and_check_url "$raw_url" "repo"
+    done
+
+    # Check mirrorlist=
+    grep 'mirrorlist=' "$path" | while read -r line; do
+        raw_url=$(echo "$line" | awk -F"=" '{print $2}' | tr -d "\"'")
+        expand_and_check_url "$raw_url" "mirrorlist"
+    done
+
+    # Check gpgkey=
+    grep 'gpgkey=' "$path" | while read -r line; do
+        raw_url=$(echo "$line" | awk -F"=" '{print $2}' | tr -d "\"'")
+        expand_and_check_url "$raw_url" "gpgkey"
     done
 done
