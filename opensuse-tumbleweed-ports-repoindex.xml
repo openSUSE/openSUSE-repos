@@ -45,6 +45,7 @@
     autorefresh="true"/>
 
 <repo url="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"
+    gpgkey="https://codecs.opensuse.org/openh264/openSUSE_Tumbleweed/repodata/repomd.xml.key"
     alias="repo-openh264"
     name="%{alias}"
     enabled="true"

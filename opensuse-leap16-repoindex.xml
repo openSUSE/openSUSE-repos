@@ -46,6 +46,7 @@
     autorefresh="true"/>
 
 <repo url="http://codecs.opensuse.org/openh264/openSUSE_Leap_16"
+    gpgkey="https://codecs.opensuse.org/openh264/openSUSE_Leap_16/repodata/repomd.xml.key"
     alias="repo-openh264"
     name="%{alias} (%{distver})"
     enabled="true"
