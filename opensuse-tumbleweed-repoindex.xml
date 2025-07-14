@@ -5,7 +5,6 @@
     sourceenable="false">
 
 <repo url="%{disturl}/%{distsub}/repo/oss"
-    mirrorlist="%{disturl}/%{distsub}/repo/oss/?mirrorlist"
     gpgkey="%{disturl}/%{distsub}/repo/oss/repodata/repomd.xml.key"
     alias="repo-oss"
     name="%{alias}"
@@ -13,7 +12,6 @@
     autorefresh="true"/>
 
 <repo url="%{disturl}/debug/%{distsub}/repo/oss"
-    mirrorlist="%{disturl}/debug/%{distsub}/repo/oss/?mirrorlist"
     gpgkey="%{disturl}/debug/%{distsub}/repo/oss/repodata/repomd.xml.key"
     alias="repo-oss-debug"
     name="%{alias}"
@@ -21,7 +19,6 @@
     autorefresh="true"/>
 
 <repo url="%{disturl}/source/%{distsub}/repo/oss"
-    mirrorlist="%{disturl}/source/%{distsub}/repo/oss/?mirrorlist"
     gpgkey="%{disturl}/source/%{distsub}/repo/oss/repodata/repomd.xml.key"
     alias="repo-oss-source"
     name="%{alias}"
@@ -29,7 +26,6 @@
     autorefresh="true"/>
 
 <repo url="%{disturl}/%{distsub}/repo/non-oss"
-    mirrorlist="%{disturl}/%{distsub}/repo/non-oss/?mirrorlist"
     gpgkey="%{disturl}/%{distsub}/repo/non-oss/repodata/repomd.xml.key"
     alias="repo-non-oss"
     name="%{alias}"
@@ -44,7 +40,6 @@
     autorefresh="true"/>
 
 <repo url="%{disturl}/update/%{distsub}"
-    mirrorlist="%{disturl}/update/%{distsub}/?mirrorlist"
     gpgkey="%{disturl}/update/%{distsub}/repodata/repomd.xml.key"
     alias="update-tumbleweed"
     name="%{alias}"

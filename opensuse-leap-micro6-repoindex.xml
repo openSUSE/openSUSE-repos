@@ -6,7 +6,6 @@
     sourceenable="false">
 
 <repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH"
-    mirrorlist="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH/?mirrorlist"
     gpgkey="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH/repodata/repomd.xml.key"
     alias="repo-main"
     name="%{alias} (%{distver})"
@@ -14,7 +13,6 @@
     autorefresh="true"/>
 
 <repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH-Debug"
-    mirrorlist="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH-Debug/?mirrorlist"
     gpgkey="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH-Debug/repodata/repomd.xml.key"
     alias="repo-debug"
     name="%{alias} (%{distver})"
@@ -22,7 +20,6 @@
     autorefresh="true"/>
 
 <repo url="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH-Source"
-    mirrorlist="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH-Source/?mirrorlist"
     gpgkey="%{disturl}/distribution/%{distsub}/%{distver}/product/repo/openSUSE-Leap-Micro-%{distver}-$DIST_ARCH-Source/repodata/repomd.xml.key"
     alias="repo-source"
     name="%{alias} (%{distver})"
