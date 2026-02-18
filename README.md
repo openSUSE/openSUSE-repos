@@ -22,6 +22,13 @@ Repositories managed by zypp-services can be easily identified as they will have
 
 ## How to enable or disable source or debug repositories with openSUSE-repos
 
+### Enabling / Disabling openSUSE non-oss / non-free repo
+```
+sudo zypper mr -e openSUSE:repo-non-oss
+Repository 'openSUSE:repo-non-free' has been successfully enabled.
+sudo zypper mr -d openSUSE:repo-non-oss
+Repository 'openSUSE:repo-non-oss' has been successfully disabled.
+```
 ### Enabling / Disabling openSUSE source repo
 ```
 $ sudo zypper modifyrepo -e openSUSE:repo-oss-source 
