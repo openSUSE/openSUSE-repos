@@ -106,8 +106,9 @@ Don't forget to send changes back to Tumbleweed and Leap once changes are merged
 ```
 $ osc sr Base:System openSUSE-repos openSUSE:Factory
 $ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:15.6 # once merged to Factory
-$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:16.0 # once merged to Factory
-$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:Micro:6.0 # once merged to Factory
+$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:Micro:6.1 # once merged to Factory
+$ osc sr openSUSE:Factory openSUSE-repos openSUSE:Leap:Micro:6.2 # once merged to Factory
 ```
+Leap 16.0+ needs to be updated via PR against leap-x.y branches in [https://src.opensuse.org/pool](https://src.opensuse.org/pool/opensuse-repos)
 
 That's all. Happy Hacking
