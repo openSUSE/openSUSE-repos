@@ -27,9 +27,17 @@ expand_and_check_url() {
         exit 2
     fi
 
-    # Append path if needed
-    local url_check=$expanded_url
-    [[ "$label" == "repo" ]] && url_check="${expanded_url}/repodata/repomd.xml"
+    # Append metadata path before any query string.
+    local url_check=$expanded_url base query
+    if [[ "$label" == "repo" ]]; then
+        if [[ "$expanded_url" == *\?* ]]; then
+            base="${expanded_url%%\?*}"
+            query="${expanded_url#*\?}"
+            url_check="${base}/repodata/repomd.xml?${query}"
+        else
+            url_check="${expanded_url}/repodata/repomd.xml"
+        fi
+    fi
 
     if [[ "$label" == "mirrorlist" ]]; then
         if [[ "$expanded_url" == *\?* ]]; then
@@ -87,19 +95,19 @@ for path in "$CURRDIR"/../*.xml; do
 
     # Check <repo url>
     grep '<repo url' "$path" | while read -r line; do
-        raw_url=$(echo "$line" | awk -F"=" '{print $2}' | tr -d "\"'")
+        raw_url=$(echo "$line" | sed -n 's/.*url="\([^"]*\)".*/\1/p')
         expand_and_check_url "$raw_url" "repo"
     done
 
     # Check mirrorlist=
     grep 'mirrorlist=' "$path" | while read -r line; do
-        raw_url=$(echo "$line" | awk -F"=" '{print $2}' | tr -d "\"'")
+        raw_url=$(echo "$line" | sed -n 's/.*mirrorlist="\([^"]*\)".*/\1/p')
         expand_and_check_url "$raw_url" "mirrorlist"
     done
 
     # Check gpgkey=
     grep 'gpgkey=' "$path" | while read -r line; do
-        raw_url=$(echo "$line" | awk -F"=" '{print $2}' | tr -d "\"'")
+        raw_url=$(echo "$line" | sed -n 's/.*gpgkey="\([^"]*\)".*/\1/p')
         expand_and_check_url "$raw_url" "gpgkey"
     done
 done
