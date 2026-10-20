@@ -26,5 +26,8 @@ jobs:
       - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell. use run: | to run multiple (command per line)
-      - name: Run a one-line script
+      - name: Run repository URL checks
         run: bash checks/repo_checks
+
+      - name: Run URL regression test
+        run: bash checks/tests/repo_checks_url.sh
